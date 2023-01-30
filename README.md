@@ -5,4 +5,5 @@ OmranSoftware Assignment (Crud App nodejs App)
  2. Navigate to project folder.
  3. Run the following:
 	 `npm install`
+	 then 
 	 `npm start`

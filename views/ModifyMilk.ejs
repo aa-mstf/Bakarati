@@ -1,0 +1,52 @@
+<%- include('partials/header'); -%>
+
+<div>
+  <form action="/api/modifyMilk">
+    <label for="ID">Milk ID:</label>
+
+    <input type="number" id="ID" name="id of the cow"
+           value=0>
+    <label for="date">New Date:</label>
+
+    <input type="date" id="date" name="date-of-addition"
+                  value="2023-01-30"
+                  min="2018-01-01" max="2023-12-31">
+       
+           <label for="Breed">New Amount:</label>
+           <input type="number" id="amount" name="id of the cow"
+           value=0>
+    <button>Modify Milk</button>
+  </form>
+</div>
+
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form= document.querySelector('form');
+  const ID = document.querySelector('#ID');
+  const date = document.querySelector('#date');
+  const amount=document.querySelector('#amount');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const Id={
+      "elementID":parseInt(ID.value),
+      "date":date.value,
+      "Amount":amount.value
+    }
+    console.log(Id)
+    try {
+      const res = await fetch('/api/modifyMilk', { 
+        method: 'POST', 
+        body: JSON.stringify(Id),
+        headers: {'Content-Type': 'application/json'}
+      });
+      location.assign('/milkPage');
+    }
+      catch (err) {
+      console.log(err);
+    }
+
+  });
+</script>

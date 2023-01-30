@@ -1,0 +1,26 @@
+<%- include('partials/header'); -%>
+<h2 id="t-title">Diagnosis List 		&#128104;&#8205;&#9877;&#65039;</h2>
+<div class="crud">
+  <a class="btn Add" href="/AddDiag">Add</a>
+  <a class="btn delete" href="/DeleteDiag">Delete</a>
+  <a class="btn Modify" href="/ModifyDiag">Modify</a>
+</div>
+<table id="customers">
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>Disease</th>
+      <th>Date</th>
+    </tr>
+</thead>
+<tbody>
+    <% for (var i = 0; i < Items.length ; i++) { %>
+        <tr>
+             <td><%= Items[i].id %></td>
+            <td><%= Items[i].disease %></td>
+            <td> <%= Items[i].date %></td>
+        </tr>
+    <% } %>
+</tbody>
+  </table>
+<%- include('partials/footer'); -%>

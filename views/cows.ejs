@@ -1,0 +1,27 @@
+<%- include('partials/header'); -%>
+<h2 id="t-title">Cow List &#128004;</h2>
+<div class="crud">
+  <a class="btn Add" href="/AddCow">Add</a>
+  <a class="btn delete" href="/DeleteCow">Delete</a>
+  <a class="btn Modify" href="/ModifyCow">Modify</a>
+</div>
+
+<table id="customers">
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>Breed</th>
+      <th>Date</th>
+    </tr>
+</thead>
+<tbody>
+    <% for (var i = 0; i < Items.length ; i++) { %>
+        <tr>
+             <td><%= Items[i].id %></td>
+            <td><%= Items[i].breed %></td>
+            <td> <%= Items[i].date %></td>
+        </tr>
+    <% } %>
+</tbody>
+  </table>
+<%- include('partials/footer'); -%>

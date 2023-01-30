@@ -1,0 +1,46 @@
+<%- include('partials/header'); -%>
+
+<div>
+  <form action="/api/AddMilk">
+    <label for="date">Date:</label>
+
+    <input type="date" id="date" name="date-of-addition"
+           value="2023-01-30"
+           min="2018-01-01" max="2023-12-31">
+
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount of milk produced today"
+           value=0>
+  
+    <button>Add new Cow</button>
+  </form>
+</div>
+
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form= document.querySelector('form');
+  const date = document.querySelector('#date');
+  const amount=document.querySelector('#amount');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const cow={
+      "date":date.value,
+      "milkAmount":amount.value
+    }
+    try {
+      const res = await fetch('/api/AddMilk', { 
+        method: 'POST', 
+        body: JSON.stringify(cow),
+        headers: {'Content-Type': 'application/json'}
+      });
+      location.assign('/milkPage');
+    }
+      catch (err) {
+      console.log(err);
+    }
+
+  });
+</script>

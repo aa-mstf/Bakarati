@@ -1,0 +1,54 @@
+<%- include('partials/header'); -%>
+
+<div>
+  <form action="/api/removeCow">
+    <label for="ID">Cow ID:</label>
+
+    <input type="number" id="ID" name="id of the cow"
+           value=0>
+    <label for="date">New Date:</label>
+
+    <input type="date" id="date" name="date-of-addition"
+                  value="2023-01-30"
+                  min="2018-01-01" max="2023-12-31">
+       
+           <label for="Breed">New Breed:</label>
+           <select id="Breed" name="Breed">
+             <option value="Holstein">Holstein</option>
+             <option value="Montbéliarde">Montbéliarde</option>
+           </select>
+    <button>Modify Cow</button>
+  </form>
+</div>
+
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form= document.querySelector('form');
+  const ID = document.querySelector('#ID');
+  const date = document.querySelector('#date');
+  const breed=document.querySelector('#breed');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const Id={
+      "elementID":parseInt(ID.value),
+      "date":date.value,
+      "breed":breed.value
+    }
+    console.log(Id)
+    try {
+      const res = await fetch('/api/ModifyCow', { 
+        method: 'POST', 
+        body: JSON.stringify(Id),
+        headers: {'Content-Type': 'application/json'}
+      });
+      location.assign('/cowsPage');
+    }
+      catch (err) {
+      console.log(err);
+    }
+
+  });
+</script>

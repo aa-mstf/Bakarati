@@ -1,0 +1,47 @@
+<%- include('partials/header'); -%>
+
+<div>
+  <form action="/api/AddMilk">
+    <label for="date">Date:</label>
+
+    <input type="date" id="date" name="date-of-addition"
+           value="2023-01-30"
+           min="2018-01-01" max="2023-12-31">
+
+    <label for="Disease">Disease:</label>
+    <input type="text" id="disease" name="disease"
+           value='none'>
+  
+    <button>Add new Diagnosis</button>
+  </form>
+</div>
+
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form= document.querySelector('form');
+  const date = document.querySelector('#date');
+  const disease=document.querySelector('#disease');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const cow={
+      "date":date.value,
+      "disease":disease.value
+    }
+    console.log(cow)
+    try {
+      const res = await fetch('/api/AddDiag', { 
+        method: 'POST', 
+        body: JSON.stringify(cow),
+        headers: {'Content-Type': 'application/json'}
+      });
+      location.assign('/diagPage')
+    }
+      catch (err) {
+      console.log(err);
+    }
+
+  });
+</script>
